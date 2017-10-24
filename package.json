@@ -1,0 +1,50 @@
+{
+  "name": "lightbuild",
+  "version": "0.1.0",
+  "description": "TeamCity + Push Notifications + MagicBlue",
+  "scripts": {
+    "start": "npm run server:dev",
+    "server": "npm run server:dev",
+    "server:dev": "webpack-dashboard -- webpack-dev-server --config ./webpack.config.js --inline --progress --watch --open",
+    "server:prod": "cross-env NODE_ENV=production webpack-dashboard -- webpack-dev-server --config ./webpack.config.js --port 3000 --host 0.0.0.0 --hot --inline --progress --profile --watch --open --content-base dist/",
+    "build": "npm run copy-sw & npm run copy-images & npm run build:dev",
+    "build:dev": "webpack --config ./webpack.config.js --progress --profile --color --display-error-details --display-cached",
+    "build:prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
+    "clean": "rimraf -- dist",
+    "copy-images": "cpx \"images\" dist",
+    "copy-sw": "cpx \"service-worker/service-worker.js\" dist"
+  },
+  "author": "phenomnomnominal",
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.1",
+    "cpx": "^1.5.0",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "ejs-loader": "^0.3.0",
+    "eslint": "^4.2.0",
+    "expose-loader": "^0.7.3",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.29.0",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "^0.18.2",
+    "tslint": "^5.5.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.4.1",
+    "webpack": "^3.3.0",
+    "webpack-dashboard": "^0.4.0",
+    "webpack-dev-server": "2.5.1"
+  },
+  "dependencies": {
+    "@types/lodash-es": "^4.14.7",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "lodash-es": "^4.17.4",
+    "magicblue": "^0.1.0",
+    "nedb": "^1.8.0",
+    "node-env-file": "^0.1.8",
+    "teamcity-client": "^1.0.11",
+    "web-push": "^3.2.4"
+  }
+}
